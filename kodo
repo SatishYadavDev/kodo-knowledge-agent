@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Short launcher for the Kodo CLI — runs inside the api container against the
+# in-container API. Examples:
+#   ./kodo                      # interactive slash shell
+#   ./kodo query "how to setup the uat?"
+#   ./kodo summarize channel C0123 --days 7
+#   ./kodo status
+cd "$(dirname "$0")" || exit 1
+exec docker compose exec api python -m app.cli --url http://localhost:8000 "$@"
